@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"os"
 	"rmansilla92/agree-coding-challenge/cmd/api/config"
 	"rmansilla92/agree-coding-challenge/cmd/api/controllers"
 
@@ -9,9 +10,12 @@ import (
 )
 
 func main() {
-	fmt.Println("hello world")
+	port := os.Getenv("PORT")
+	if port == "" {
+		port = "8080"
+	}
 	controller := controllers.NewControllers()
-	if err := run("8080", controller); err != nil {
+	if err := run(port, controller); err != nil {
 		fmt.Println("error running server")
 	}
 }
@@ -24,4 +28,9 @@ func run(port string, controller controllers.Controllers) error {
 
 func mapRoutes(router *gin.Engine, controller controllers.Controllers) {
 	router.GET("/ping", controller.Ping)
+	router.POST("/yu-gi-oh/cards", controller.CreateCard)
+	router.PUT("/yu-gi-oh/cards/:card_id", controller.UpdateCard)
+	router.GET("/yu-gi-oh/cards", controller.GetCards)
+	router.GET("/yu-gi-oh/cards/:card_id", controller.GetSpecificCard)
+	router.DELETE("/yu-gi-oh/cards/:card_id", controller.DeleteCard)
 }
