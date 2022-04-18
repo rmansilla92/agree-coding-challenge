@@ -17,6 +17,10 @@ func main() {
 	} else {
 		config.LoadDevelopValues()
 	}
+	port := os.Getenv("PORT")
+	if port == "" {
+		port = "8080"
+	}
 	db, err := services.OpenDB("default")
 	if err != nil {
 		panic("Error on init default DB")
