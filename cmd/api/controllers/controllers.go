@@ -1,6 +1,10 @@
 package controllers
 
-import "github.com/gin-gonic/gin"
+import (
+	"rmansilla92/agree-coding-challenge/cmd/api/services"
+
+	"github.com/gin-gonic/gin"
+)
 
 type (
 	Controllers interface {
@@ -12,9 +16,10 @@ type (
 		DeleteCard(c *gin.Context)
 	}
 	controllers struct {
+		services services.Services
 	}
 )
 
-func NewControllers() Controllers {
-	return &controllers{}
+func NewControllers(service services.Services) Controllers {
+	return &controllers{services: service}
 }
