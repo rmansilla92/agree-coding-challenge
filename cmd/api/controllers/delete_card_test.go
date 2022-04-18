@@ -2,7 +2,7 @@ package controllers
 
 import (
 	"net/http"
-	"rmansilla92/agree-coding-challenge/mocks"
+	"rmansilla92/agree-coding-challenge/cmd/api/mocks"
 	"testing"
 
 	"github.com/gin-gonic/gin"
