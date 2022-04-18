@@ -1,6 +1,6 @@
 module rmansilla92/agree-coding-challenge
 
-go 1.16
+go 1.15
 
 require (
 	github.com/gin-gonic/gin v1.7.7
