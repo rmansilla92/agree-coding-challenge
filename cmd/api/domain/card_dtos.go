@@ -18,3 +18,19 @@ type CardDTO struct {
 	ImageDescription   *string  `json:"image_description"`
 	DateCreated        *string  `json:"date_created"`
 }
+
+func (cdto *CardDTO) CardsDTOToEntity() *NewCardEntity {
+	return &NewCardEntity{
+		Name:               cdto.Name,
+		FirstEdition:       cdto.FirstEdition,
+		SerieCode:          cdto.SerieCode,
+		SubTypeID:          cdto.SubTypeID,
+		ATK:                cdto.ATK,
+		DEF:                cdto.DEF,
+		Stars:              cdto.Stars,
+		Description:        cdto.Description,
+		Price:              cdto.Price,
+		ImageID:            cdto.ImageID,
+		DateCreated:        cdto.DateCreated,
+	}
+}

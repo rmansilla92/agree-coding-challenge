@@ -13,5 +13,4 @@ func (ctrl *controllers) GetCards(c *gin.Context) {
 		return
 	}
 	c.JSON(http.StatusOK, response)
-	return
 }
