@@ -2,15 +2,21 @@ package main
 
 import (
 	"fmt"
+	"os"
 	"rmansilla92/agree-coding-challenge/cmd/api/config"
 	"rmansilla92/agree-coding-challenge/cmd/api/controllers"
 	"rmansilla92/agree-coding-challenge/cmd/api/services"
+	"strings"
 
 	"github.com/gin-gonic/gin"
 )
 
 func main() {
-	config.LoadDevelopValues()
+	if strings.EqualFold(os.Getenv("SCOPE"), "prod") {
+		config.LoadProductionValues()
+	} else {
+		config.LoadDevelopValues()
+	}
 	db, err := services.OpenDB("default")
 	if err != nil {
 		panic("Error on init default DB")
