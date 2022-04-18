@@ -55,3 +55,25 @@ func NewNotFoundApiError(message string) ApiError {
 		ErrorCause:   CauseList{},
 	}
 }
+
+func NewBadRequestApiError(message string) ApiError {
+	return apiError{
+		ErrorMessage: message,
+		ErrorCode:    "bad_request",
+		ErrorStatus:  http.StatusBadRequest,
+		ErrorCause:   CauseList{},
+	}
+}
+
+func NewInternalServerApiError(message string, err error) ApiError {
+	cause := CauseList{}
+	if err != nil {
+		cause = append(cause, err.Error())
+	}
+	return apiError{
+		ErrorMessage: message,
+		ErrorCode:    "internal_server_error",
+		ErrorStatus:  http.StatusInternalServerError,
+		ErrorCause:   cause,
+	}
+}
