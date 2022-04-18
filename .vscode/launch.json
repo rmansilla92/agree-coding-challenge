@@ -12,10 +12,10 @@
             "host": "localhost",
             "program": "${workspaceFolder}/cmd/api/main.go",
             "env": { 
-                "LOCAL_DB_NAME": "yu-gi-oh",
-                "LOCAL_DB_USER": "localtest",
-                "LOCAL_DB_PASS": "localtest",
-                "LOCAL_DB_HOST": "35.199.81.215",
+                "LOCAL_DB_NAME": "yu_gi_oh",
+                "LOCAL_DB_USER": "admin",
+                "LOCAL_DB_PASS": "admin123",
+                "LOCAL_DB_HOST": "agree-coding-challenge-db.cifx1mctj3tm.us-east-1.rds.amazonaws.com",
                 "LOCAL_DB_PORT": "3306"
             }
         }

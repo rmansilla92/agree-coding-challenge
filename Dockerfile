@@ -1,4 +1,4 @@
-FROM golang:1.16-buster as builder
+FROM golang:1.15
 
 ENV APPLICATION_PACKAGE="./cmd/api"
 ENV PORT 8080 
