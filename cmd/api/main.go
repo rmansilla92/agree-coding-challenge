@@ -19,7 +19,7 @@ func main() {
 	docs.SwaggerInfo.Title = "Agree – Backend Engineer Coding Challenge"
 	docs.SwaggerInfo.Description = "Esta API tiene los endpoints relacionados con las cartas Yu-Gi-Oh! solicitados en el challenge"
 	docs.SwaggerInfo.Version = "1.0"
-	docs.SwaggerInfo.Host = "https://agree-coding-challenge-2-eissifkqta-rj.a.run.app"
+	docs.SwaggerInfo.Host = "agree-coding-challenge-2-eissifkqta-rj.a.run.app"
 	docs.SwaggerInfo.BasePath = "/yu-gi-oh"
 	docs.SwaggerInfo.Schemes = []string{"https"}
 	if strings.EqualFold(os.Getenv("SCOPE"), "prod") {
