@@ -34,7 +34,7 @@ func (suite *ServicesTestSuite) TearDownSuite() {
 }
 
 func getTestingSQLService(t *testing.T) SQLServices {
-	db, err := gorm.Open(sqlite.Open("file:memory:"), &gorm.Config{})
+	db, err := gorm.Open(sqlite.Open("file::memory:"), &gorm.Config{})
 	if err != nil {
 		t.Fatal(err)
 	}
