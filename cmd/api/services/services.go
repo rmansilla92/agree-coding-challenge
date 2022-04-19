@@ -8,7 +8,7 @@ import (
 
 type (
 	Services interface {
-		GetCardsService() (map[string]interface{}, error)
+		GetCardsService() (map[string]interface{}, apierrors.ApiError)
 		GetCardService(cardID string) (*domain.CardDTO, apierrors.ApiError)
 		ProcessCreateCard(card *domain.CardDTO) apierrors.ApiError
 		ProcessUpdateCard(cardID string, card *domain.CardDTO) apierrors.ApiError
@@ -23,7 +23,7 @@ func NewServices(sqlService SQLServices) Services {
 	return &services{sqlServices: sqlService}
 }
 
-func (srv *services) GetCardsService() (map[string]interface{}, error) {
+func (srv *services) GetCardsService() (map[string]interface{}, apierrors.ApiError) {
 	result, err := srv.sqlServices.GetCardsFromDB()
 	if err != nil {
 		return nil, apierrors.NewInternalServerApiError("error getting cards", err)
@@ -49,7 +49,6 @@ func (srv *services) GetCardService(cardID string) (*domain.CardDTO, apierrors.A
 
 func (srv *services) ProcessCreateCard(card *domain.CardDTO) apierrors.ApiError {
 	cardEntity := card.CardsDTOToEntity()
-	
 	if err := srv.sqlServices.CreateCardIntoDB(cardEntity); err != nil {
 		return apierrors.NewInternalServerApiError("error creating card", err)
 	}

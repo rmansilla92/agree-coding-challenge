@@ -5,13 +5,23 @@ import (
 	"os"
 	"rmansilla92/agree-coding-challenge/cmd/api/config"
 	"rmansilla92/agree-coding-challenge/cmd/api/controllers"
+	"rmansilla92/agree-coding-challenge/cmd/api/docs"
 	"rmansilla92/agree-coding-challenge/cmd/api/services"
 	"strings"
 
 	"github.com/gin-gonic/gin"
+	swaggerFiles "github.com/swaggo/files"
+	ginSwagger "github.com/swaggo/gin-swagger"
 )
 
 func main() {
+	//Swagger 2.0 Meta Information
+	docs.SwaggerInfo.Title = "Agree – Backend Engineer Coding Challenge"
+	docs.SwaggerInfo.Description = "Esta API tiene los endpoints relacionados con las cartas Yu-Gi-Oh! solicitados en el challenge"
+	docs.SwaggerInfo.Version = "1.0"
+	docs.SwaggerInfo.Host = "https://agree-coding-challenge-2-eissifkqta-rj.a.run.app"
+	docs.SwaggerInfo.BasePath = "/yu-gi-oh"
+	docs.SwaggerInfo.Schemes = []string{"https"}
 	if strings.EqualFold(os.Getenv("SCOPE"), "prod") {
 		config.LoadProductionValues()
 	} else {
@@ -46,4 +56,5 @@ func mapRoutes(router *gin.Engine, controllers controllers.Controllers) {
 	router.GET("/yu-gi-oh/cards", controllers.GetCards)
 	router.GET("/yu-gi-oh/cards/:card_id", controllers.GetSpecificCard)
 	router.DELETE("/yu-gi-oh/cards/:card_id", controllers.DeleteCard)
+	router.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
 }
